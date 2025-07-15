@@ -42,8 +42,8 @@ onnx.save(onnx_model, "add_model.onnx")
 # session = ort.InferenceSession("add_model.onnx", providers=ort.get_available_providers())
 # providers = ["CPUExecutionProvider"]
 providers = ["QNNExecutionProvider"]
-# session = ort.InferenceSession("add_model.onnx", providers=providers)
-session = ort.InferenceSession("add_model.onnx")
+session = ort.InferenceSession("add_model.onnx", providers=providers)
+# session = ort.InferenceSession("add_model.onnx")
 # session = ort.InferenceSession(onnx_model)
 
 # 3. Prepare NumPy arrays
@@ -52,7 +52,10 @@ matrix_b = np.array([[10, 11, 12], [13, 14, 15], [16, 17, 18]], dtype=np.float32
 
 # 4. Run inference
 inputs = {model_input_name1: matrix_a, model_input_name2: matrix_b}
-outputs = session.run([model_output_name], inputs)
+outputs = session.run(
+                    None
+                    # [model_output_name]
+                    , inputs)
 
 # Print the result
 result_matrix = outputs[0]

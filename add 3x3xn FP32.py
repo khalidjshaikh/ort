@@ -22,6 +22,7 @@ start_time = time.perf_counter()
 
 # n = int(1e8)
 n = int(1e7)
+n = int(1e5)
 
 # n = int(1e7)
 # n = int(1e6)
@@ -71,7 +72,8 @@ import numpy as np
 
 # Load the ONNX model
 sess = ort.InferenceSession("add_large_matrices.onnx",
-                            # providers=["QNNExecutionProvider"]
+                            providers=["QNNExecutionProvider"],
+                            provider_options=[{"backend_path": "QnnHtp.dll"}] # Provide path to Htp dll in QNN SDK
                             )
 
 # Create dummy input data
