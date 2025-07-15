@@ -85,7 +85,7 @@ input_data_Y = ones((n,3,3)).astype(uint8) *2
 # input_data_Y = zeros((3,3, int(1e6))).astype(uint8)
 
 # Run inference
-outputs = sess.run(None, {"X": input_data_X, "Y": input_data_Y})
+outputs = sess.run(['Z'], {"X": input_data_X, "Y": input_data_Y})
 
 # Get the output (result of addition)
 output_Z = outputs[0]
@@ -101,6 +101,8 @@ print(input_data_X)
 print(input_data_Y)
 print(outputs)
 
+from si_prefix import si_format
 print(input_shape, ": {:.2e}".format(prod(input_shape)))
+print(si_format(prod(input_shape)/elapsed_time))
 print("{:.2e}".format(prod(input_shape)/elapsed_time))
 print(elapsed_time)

@@ -91,5 +91,7 @@ print("Output matches expected:", np.allclose(output_Z, expected_output))
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
+from si_prefix import si_format
+print(si_format(prod(input_shape)/elapsed_time))
 print("{:.2e}".format(prod(input_shape)/elapsed_time))
 print(elapsed_time)

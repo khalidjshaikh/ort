@@ -93,3 +93,4 @@ elapsed_time = end_time - start_time
 
 print("{:.2e}".format(prod(input_shape)/elapsed_time))
 print(elapsed_time)
+

@@ -14,9 +14,9 @@ print(f"NumPy version: {numpy.__version__}")
 
 # ... (Previous code for creating and saving the ONNX model remains the same) ...
 # Define the graph
-input_a = helper.make_tensor_value_info('input_a', TensorProto.FLOAT, [3, 3])
-input_b = helper.make_tensor_value_info('input_b', TensorProto.FLOAT, [3, 3])
-output_c = helper.make_tensor_value_info('output_c', TensorProto.FLOAT, [3, 3])
+input_a = helper.make_tensor_value_info('input_a', TensorProto.UINT8, [3, 3])
+input_b = helper.make_tensor_value_info('input_b', TensorProto.UINT8, [3, 3])
+output_c = helper.make_tensor_value_info('output_c', TensorProto.UINT8, [3, 3])
 
 add_node = helper.make_node("Add", ["input_a", "input_b"], ["output_c"])
 
@@ -46,8 +46,8 @@ sess = rt.InferenceSession(onnx_model_path,
                         )
 
 # Prepare input data outside the loop
-matrix_a = np.random.randint(10, size=(3, 3)).astype(np.float32)
-matrix_b = np.random.randint(10, size=(3, 3)).astype(np.float32)
+matrix_a = np.random.randint(10, size=(3, 3)).astype(np.uint8)
+matrix_b = np.random.randint(10, size=(3, 3)).astype(np.uint8)
 
 input_feed = {
     "input_a": matrix_a,
@@ -67,7 +67,7 @@ start_time = time.time()
 # 1766.066792646098
 for _ in range(num_iterations):
     # Run inference without recreating the session or input feed
-    output = sess.run(None, input_feed) # Basic run
+    output = sess.run(["output_c"], input_feed) # Basic run
     # If performance is critical, consider IO binding to avoid data copies
     
     # io_binding = sess.io_binding()
