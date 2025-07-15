@@ -4,6 +4,14 @@ import onnxruntime as rt
 from onnx import helper, TensorProto
 import time # Import time for performance measurement
 
+import sys
+import onnxruntime
+import numpy
+print(f"Python version: {sys.version}")
+print(f"ONNX version: {onnx.__version__}")
+print(f"ONNX Runtime version: {onnxruntime.__version__}")
+print(f"NumPy version: {numpy.__version__}")
+
 # ... (Previous code for creating and saving the ONNX model remains the same) ...
 # Define the graph
 input_a = helper.make_tensor_value_info('input_a', TensorProto.FLOAT, [3, 3])
@@ -35,7 +43,7 @@ sess = rt.InferenceSession(onnx_model_path,
                         provider_options=[{"backend_path": "QnnHtp.dll"}] # Provide path to Htp dll in QNN SDK
                         #    providers=rt.get_available_providers(), 
                         #    sess_options=sess_options
-                           )
+                        )
 
 # Prepare input data outside the loop
 matrix_a = np.random.randint(10, size=(3, 3)).astype(np.float32)

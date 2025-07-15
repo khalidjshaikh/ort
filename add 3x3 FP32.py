@@ -2,6 +2,14 @@ import onnx
 import onnxruntime as ort
 import numpy as np
 
+import sys
+import onnxruntime
+import numpy
+print(f"Python version: {sys.version}")
+print(f"ONNX version: {onnx.__version__}")
+print(f"ONNX Runtime version: {onnxruntime.__version__}")
+print(f"NumPy version: {numpy.__version__}")
+
 # 1. Create the ONNX model
 model_input_name1 = "input_matrix_a"
 model_input_name2 = "input_matrix_b"

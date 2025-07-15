@@ -1,13 +1,15 @@
 # python onnx onnxruntime add 3x3 matrix ir_version 10 opset_version 22
-
-
 import sys
 import onnx
 import onnxruntime as ort
 
-print(f"Python version: {sys.version}")  # Prints the full Python version string.
-print(f"ONNX version: {onnx.__version__}") # Prints the ONNX version number.
-print(f"ONNX Runtime version: {ort.__version__}") # Prints the ONNX Runtime version number.
+import sys
+import onnxruntime
+import numpy
+print(f"Python version: {sys.version}")
+print(f"ONNX version: {onnx.__version__}")
+print(f"ONNX Runtime version: {onnxruntime.__version__}")
+print(f"NumPy version: {numpy.__version__}")
 
 import numpy as np
 import onnx
